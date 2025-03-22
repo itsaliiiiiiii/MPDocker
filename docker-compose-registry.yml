@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  registry:
+    image: registry:2
+    container_name: registry
+    ports:
+      - "3000:3000"
+
+  registry-ui:
+    image: joxit/docker-registry-ui
+    container_name: registry_ui
+    environment:
+      - REGISTRY_URL=http://registry:3000
+    ports:
+      - "8081:80"
+    depends_on:
+      - registry

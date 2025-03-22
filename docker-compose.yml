@@ -1,0 +1,26 @@
+services:
+  api:
+    build: ./simple_api
+    container_name: student_api
+    ports:
+      - "3000:3000"
+    volumes:
+      - /Users/its.aliiiiiiii/Downloads/student_list/simple_api/student_age.json:/data/student_age.json
+    networks:
+      - student_network
+
+  website:
+    image: php:apache
+    container_name: student_website
+    ports:
+      - "8080:80"
+    volumes:
+      - ./website:/var/www/html
+    depends_on:
+      - api
+    networks:
+      - student_network
+
+networks:
+  student_network:
+    driver: bridge
