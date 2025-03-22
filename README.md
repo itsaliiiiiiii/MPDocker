@@ -173,7 +173,7 @@ Ce fichier **Dockerfile** définit l'image Docker pour l'API Flask. Il configure
 
 
 # Student Checking App - Interface Web
-```
+```php
 <html>
 
 <head>
@@ -253,7 +253,7 @@ Cette application Web simple permet d'afficher une liste des étudiants avec leu
 
 
 # Docker Compose - Déploiement de l'API et Interface de Registre
-```
+```dockerfile
 version: '3.8'
 
 services:
@@ -302,7 +302,7 @@ Le fichier `docker-compose.yml` définit deux services :
 Lorsque vous démarrez le service via Docker Compose, l'interface graphique sera disponible sur `http://localhost:8081` et vous permettra de gérer votre registre Docker privé accessible à `http://localhost:3000`.
 
 # Docker Compose - Déploiement de l'API et de l'Interface Web
-```
+```dockerfile
 services:
   api:
     build: ./simple_api
