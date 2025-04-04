@@ -377,3 +377,105 @@ La commande docker logs permet de visualiser les journaux (logs) d'un conteneur 
 
 ![Texte alternatif](src/5.png)
 
+# Partie 2
+
+
+``` dockerfile
+FROM nginx:alpine
+```
+une image Docker légère basée sur NGINX + Alpine Linux pour servir un site web statique.
+
+```Jenkinsfile
+pipeline {
+    agent any
+
+    environment {
+        DOCKER_IMAGE = "itsaliiiiiiii/simple_api"
+        VERSION = "latest"
+    }
+
+    stages {
+        stage('Cloner le projet') {
+            steps {
+                git 'https://github.com/itsaliiiiiiii/MPDocker.git'
+            }
+        }
+
+        stage('Construire image Docker') {
+            steps {
+                script {
+                    sh 'docker build -t $DOCKER_IMAGE:$VERSION .'
+                }
+            }
+        }
+
+        stage('Tester image Docker') {
+            steps {
+                script {
+                    sh 'docker run -d --name test-container -p 8080:80 $DOCKER_IMAGE:$VERSION'
+                    sh 'sleep 5' 
+                    sh 'curl -I http://localhost:8080' 
+                    sh 'docker stop test-container && docker rm test-container'
+                }
+            }
+        }
+
+    }
+}
+
+```
+
+1. **Cloner ton projet depuis GitHub**
+2. **Construire une image Docker**
+3. **Tester cette image en lançant un conteneur temporaire**
+
+---
+
+##  **Détail de chaque section du pipeline**
+
+### ### `pipeline { ... }`
+C’est le bloc principal qui contient tout le pipeline.
+
+---
+
+###  `agent any`
+Indique que le pipeline peut s’exécuter sur n’importe quel agent Jenkins disponible (machine/esclave).
+
+---
+
+###  `environment { ... }`
+Définit des **variables d’environnement** que tu réutilises plus tard :
+- `DOCKER_IMAGE = "itsaliiiiiiii/simple_api"` → Nom de ton image Docker
+- `VERSION = "latest"` → Tag de version de l’image (ici, "latest")
+
+---
+
+##  **Les stages (étapes)**
+
+---
+
+###  `stage('Cloner le projet')`
+- Utilise la commande `git` pour **cloner ton dépôt GitHub** :  
+   `https://github.com/itsaliiiiiiii/MPDocker.git`
+
+---
+
+###  `stage('Construire image Docker')`
+- Exécute la commande Docker :  
+   `docker build -t $DOCKER_IMAGE:$VERSION .`
+- Cela construit une image Docker avec le tag `itsaliiiiiiii/simple_api:latest`
+
+---
+
+###  `stage('Tester image Docker')`
+- **Lance un conteneur Docker temporaire** depuis l’image que tu viens de construire :
+  ```bash
+  docker run -d --name test-container -p 8080:80 $DOCKER_IMAGE:$VERSION
+  ```
+- **Attend 5 secondes** pour laisser le conteneur démarrer.
+- **Teste l'API** avec `curl -I http://localhost:8080` → vérifie si le serveur répond.
+- **Stoppe et supprime le conteneur** une fois le test terminé :
+  ```bash
+  docker stop test-container && docker rm test-container
+  ```
+

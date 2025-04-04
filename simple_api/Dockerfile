@@ -1,3 +1,5 @@
+FROM nginx:alpine
+
 FROM python:3.8-buster
 
 LABEL maintainer="Ali Harit <ali.harit@usms.ac.ma>"
