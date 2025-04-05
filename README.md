@@ -481,9 +481,9 @@ Définit des **variables d’environnement** que tu réutilises plus tard :
 
 # Partie 3
 
-![Texte alternatif](src/aws1.png)
-![Texte alternatif](src/aws2.png)
-![Texte alternatif](src/aws3.png)
-![Texte alternatif](src/aws4.png)
+![Texte alternatif](src/aws1.jpg)
+![Texte alternatif](src/aws2.jpg)
+![Texte alternatif](src/aws3.jpg)
+![Texte alternatif](src/aws4.jpg)
 
 
