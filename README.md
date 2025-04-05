@@ -82,7 +82,7 @@ Cette API REST, développée avec **Flask**, permet de récupérer les âges des
 
 ```bash
 http://localhost:3000/supmit/api/v1.0/get_student_ages
-http://localhost:3000/supmit/api/v1.0/get_student_ages/John
+http://localhost:3000/supmit/api/v1.0/get_student_ages/ali
 ```
 # Dockerfile - Configuration du Conteneur
 ```Dockerfile
@@ -478,4 +478,12 @@ Définit des **variables d’environnement** que tu réutilises plus tard :
   ```bash
   docker stop test-container && docker rm test-container
   ```
+
+# Partie 3
+
+![Texte alternatif](src/aws1.png)
+![Texte alternatif](src/aws2.png)
+![Texte alternatif](src/aws3.png)
+![Texte alternatif](src/aws4.png)
+
 
