@@ -1,6 +1,7 @@
 ### Réalisé par :
 - **Ali Harit**
 - **Anas Zerhoun**
+- **Mohamed Amine Moutaouakil**
 
 Développement et Déploiement d'un Système de Gestion des Âges des Étudiants avec Docker et Flask API
 
